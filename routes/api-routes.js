@@ -9,7 +9,19 @@ module.exports = function (app) {
     });
   });
 
-
+  app.put("/api/workouts/:id", (req,res) =>{
+    Workout.findOneAndUpdate(
+      { _id:req.params.id }, 
+      { $push: { exercises: req.body } 
+    },
+    (err, data) => {
+      if (err) {
+        res.send(err);
+      } else {
+        res.send(data);
+      }
+    });
+  });
 
 
 
