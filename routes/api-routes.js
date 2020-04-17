@@ -23,6 +23,13 @@ module.exports = function (app) {
     });
   });
 
+  app.post("/api/workouts", (req, res) => {
+    Workout.create(req.body).then(data => {
+      res.json(data);
+    }).catch(err => {
+      res.send(err);
+    });
+  });
 
 
 }
